@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reverse Text</title>
+    <script>
+        const socket = new WebSocket("ws://localhost:8081/ws");
+
+        socket.addEventListener("message", function(event) {
+            const reversedText = event.data;
+            document.getElementById("reversedText").textContent = reversedText;
+        });
+
+        function reverseText() {
+            const inputText = document.getElementById("text").value;
+            socket.send(inputText);
+        }
+    </script>
+</head>
+<body>
+<input type="text" id="text" placeholder="Enter text" />
+<button onclick="reverseText()">Reverse</button>
+<p id="reversedText"></p>
+</body>
+</html>
